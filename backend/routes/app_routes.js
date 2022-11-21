@@ -20,13 +20,6 @@ const router = express.Router()
 
 //UPDATE a cat information
 
-
-
-
-
-
-
-
 //GET a neighborhood 
 
 
