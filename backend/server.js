@@ -4,6 +4,8 @@ const express = require('express')
 
 const mongoose = require('mongoose')
 
+const postRoutes = require('./routes/app-routes.js')
+
 
 
 const app = express()
@@ -19,9 +21,7 @@ app.use((req, res, next) => {
 
 
 // routes
-app.get('/', (req, res) => {
-    res.json({mssg: 'Welcome to the app'})
-})
+app.use('/api/posts', postRoutes)
   
 // listen for requests
 app.listen(process.env.PORT, () => {

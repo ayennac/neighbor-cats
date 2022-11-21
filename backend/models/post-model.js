@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
-const postSchema = mongoose.Schema(
+const postSchema = new Schema(
     {
       userId: {
         type: String,
@@ -32,6 +32,4 @@ const postSchema = mongoose.Schema(
     { timestamps: true }
   );
   
-  const Post = mongoose.model("Post", postSchema);
-  
-  export default Post;
+module.exports =  mongoose.model("Post", postSchema);
