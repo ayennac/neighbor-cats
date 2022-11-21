@@ -27,3 +27,15 @@ app.get('/', (req, res) => {
 app.listen(process.env.PORT, () => {
     console.log('listening on port', process.env.PORT)
 })
+
+
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => {
+        console.log("connected to database")
+        app.listen(process.env.PORT, () => {
+            console.log('listening on port', process.env.PORT)
+        }) 
+    })
+    .catch((error) => {
+        console.log(error)
+    })
