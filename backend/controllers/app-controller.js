@@ -1,33 +1,70 @@
-const mongooose = require('mongoose')
+const mongoose = require('mongoose')
 
 const Post = require('../models/post-model')
 
-
-//res.json({mssg: 'GET all workouts'})
-
 const getallPosts = async(req, res) =>{
-    
-    // const posts = await Post.find({}).sort({createdAt: -1})
-    // res.status(200).json(workouts)
+    const posts = await Post.find({}).sort({createdAt: -1})
+    res.status(200).json(posts)
 }
 
 const getPost = async(req,res) =>{
-    res.json({mssg: 'GET posts'})
+    const {id} = req.params
+    
+    //will return a null if it cannot find the ID
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: 'No Post found' })
+    }
+    const post = await Post.findById(id)
+    if(!post){
+        return res.status(404).json({error: 'No Post found'})
+    }
+
+    res.status(200).json({post})
 }
 
 const createPost = async(req, res) =>{
-    res.json({mssg: 'POST a new post'})
+    const { userId, fname, lname, des, pic, userPic, comments} = req.body
+    try {
+        const post = await Post.create({ userId, fname, lname, des, pic, userPic, comments})
+        res.status(200).json(post)
+    } catch(error){
+        res.status(400).json({error: error.message})
+    }
 }
 
+
 const updatePost = async(req, res) =>{
-    res.json({mssg: 'Update a post'})
+    const {id} = req.params
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: 'No Post found' })
+    }
+    const post = await Post.findOneAndUpdate({_id:id}, {
+        ...req.body
+    })
+
+    if(!post){
+        return res.status(404).json({error: 'No post found'})
+    }
+
+    res.status(200).json(post)
 }
 
 const deletePost = async(req, res) =>{
-    res.json({mssg: 'DELETE a post'})
+    const {id} = req.params
+
+    //will return a null if it cannot find the ID
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: 'No post found' })
+    }
+    
+    const post = await Post.findOneAndDelete({_id:id})
+
+    if(!post){
+        return res.status(404).json({error: 'No post found'})
+    }
+
+    res.status(200).json(post)
 }
-
-
 
 module.exports = {
     getallPosts,
