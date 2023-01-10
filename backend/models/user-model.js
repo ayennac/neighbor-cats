@@ -30,6 +30,10 @@ const UserSchema = new Schema({
     posts : {
         type: Array,
         default: []
+    }, 
+    location: {
+        type: Number,
+        required: true
     }
 }, {timestamps: true})
 
