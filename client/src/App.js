@@ -1,21 +1,31 @@
 
 //npm installed react-router-dom so that we can style individual pages
-import { BrowserRouter, Routes, Route} from 'react-router-dom'
+import { BrowserRouter, Routes, Route, createBrowserRouter, createRoutesFromElements, RouterProvider} from 'react-router-dom'
 
-//pages & components
+//pages 
 import Home from './pages/Home'
+import Navbar from './components/Navbar'
+import About from './pages/About';
 
+//layouts
+import RootLayout from './layouts/RootLayout'
+
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path = "/" element={<Home/>}>
+    <Route path = "about" element = {<About/>}>
+    </Route>
+    </Route>
+  )
+)
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-      <div className="pages">
-        <Routes>
-          <Route path = "/" element = {<Home/>}></Route>
-        </Routes>
-      </div>
-      </BrowserRouter>
+      <RouterProvider router = {router}>
+
+      </RouterProvider>
      
     </div>
   );
