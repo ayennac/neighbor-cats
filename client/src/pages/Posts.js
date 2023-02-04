@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react'
 
 
 import Post from '../components/Post'
+import PostForm from '../components/PostForm'
 
 const Posts = () => {
 
@@ -24,6 +25,7 @@ const Posts = () => {
     return(
         <div className = "posts">
             <h2>Posts</h2>
+            <PostForm></PostForm>
             {posts && posts.map((post) =>(
                 <Post key ={post._id} post={post}/>
             ))}
