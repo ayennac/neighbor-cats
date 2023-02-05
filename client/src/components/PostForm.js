@@ -28,6 +28,9 @@ const PostForm = () =>{
         if(response.ok){
             setFname('')
             setLname('')
+            setDes('')
+            setPostPic('')
+            setUserpic('')
             setError(null)
         }
         
@@ -46,6 +49,21 @@ const PostForm = () =>{
                 type="text"
                 onChange={(e) => setLname(e.target.value)}
                 value={lname}/>
+             <label> Description </label>
+             <input 
+                type="text"
+                onChange={(e) => setDes(e.target.value)}
+                value={des}/>
+             <label> PostPic </label>
+             <input 
+                type="text"
+                onChange={(e) => setPostPic(e.target.value)}
+                value={pic}/>
+            <label> UserPic </label>
+             <input 
+                type="text"
+                onChange={(e) => setUserpic(e.target.value)}
+                value={userpic}/>
             <button> Post</button>
             {error && <div className="error">{error}</div>}
         </form>
