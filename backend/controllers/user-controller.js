@@ -9,7 +9,13 @@ const loginUser = async(req,res)=>{
 
 //signup user
 const signupUser = async(req, res) =>{
-    res.json({mssg: 'signup user'})
+    const {fname, lname, email, password} = req.body
+    try{
+        const user = await User.signup(fname, lname, email, password)
+        res.status(200).json({user})
+    } catch(error){
+        res.status(400).json({error: error.message})
+    }
 }
 
 module.exports = {signupUser, loginUser}
