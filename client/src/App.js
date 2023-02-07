@@ -6,6 +6,7 @@ import {Route, createBrowserRouter, createRoutesFromElements, RouterProvider} fr
 import Home from './pages/Home'
 import About from './pages/About'
 import Login from './pages/Login'
+import Signup from './pages/Signup'
 import Posts from './pages/Posts'
 
 //layouts
@@ -18,6 +19,7 @@ const router = createBrowserRouter(
     <Route index element={<Home/>}/>
     <Route path = "about" element = {<About/>}/>
     <Route path = "login" element = {<Login/>}/>
+    <Route path = "signup" element = {<Signup/>}/>
     <Route path = "posts" element = {<Posts/>}/>
 
     </Route>
