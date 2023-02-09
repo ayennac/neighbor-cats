@@ -1,7 +1,10 @@
 const express = require('express')
 const {getallPosts, getPost, createPost, updatePost, deletePost} = require('../controllers/app-controller.js')
+const {requireAuth} = require('../middleware/requireAuth')
 
 const router = express.Router()
+
+router.use(requireAuth)
 
 //GET all posts
 router.get('/', getallPosts)
