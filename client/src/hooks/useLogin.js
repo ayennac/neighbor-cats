@@ -30,7 +30,7 @@ export const useLogin = () => {
             localStorage.setItem('user', JSON.stringify(json))
             
             //update auth context
-            dispatch({type:'Login', payload: json})
+            dispatch({type:'LOGIN', payload: json})
 
             setIsLoading(false)
         }
