@@ -2,7 +2,14 @@
 import {useState} from 'react'
 
 
+//context
+import { usePostsContext } from '../hooks/usePostContext'
+import { useAuthContext } from '../hooks/useAuthContext'
+
+
 const PostForm = () =>{
+    const {dispatch} = usePostsContext()
+    const {user} = useAuthContext()
 
     const [fname, setFname] = useState('')
     const [lname, setLname] = useState('')
@@ -10,21 +17,33 @@ const PostForm = () =>{
     const [pic, setPostPic] = useState('')
     const [userpic, setUserpic] = useState('')
     const [error, setError] = useState(null)
+
+
     const handleSubmit = async(e) =>{
         e.preventDefault()
+
+        if(!user){
+            setError('You must be logged in')
+            return
+        }
+
         const post = {fname,lname, des, pic, userpic}
+
         const response = await fetch('/api/posts/', {
             method:'POST',
             body:JSON.stringify(post),
             headers:{
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json', 
+                'Authorization': `Bearer ${user.token}`
             }
         })
 
         const json = await response.json()
+
         if(!response.ok){
             setError(json.error)
         }
+
         if(response.ok){
             setFname('')
             setLname('')
@@ -32,6 +51,7 @@ const PostForm = () =>{
             setPostPic('')
             setUserpic('')
             setError(null)
+            dispatch({type: 'CREATE_POST', payload: json})
         }
         
     }

@@ -1,26 +1,38 @@
-import {useEffect, useState} from 'react'
+import {useEffect} from 'react'
+
+//contexts
+import { usePostsContext } from '../hooks/usePostContext'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 
+//components
 import Post from '../components/Post'
 import PostForm from '../components/PostForm'
 
 const Posts = () => {
 
-    const[posts, setPosts] = useState(null)
+    const {posts, dispatch} = usePostsContext()
+    const {user} = useAuthContext()
 
     useEffect(() => {
         const fetchPosts = async () => {
-            const response = await fetch('/api/posts')
+            const response = await fetch('/api/posts',{
+                headers: {'Authorization': `Bearer ${user.token}`}
+            })
+
             const json = await response.json()
+
             if (response.ok){
-                setPosts(json)
-
+                dispatch({type: 'SET_POSTS', payload: json})
             }
+            
         }
-        fetchPosts()
-    }, [])
+        
 
-
+        if(user){
+            fetchPosts()
+        }
+    }, [dispatch, user])
 
     return(
         <div className = "posts">

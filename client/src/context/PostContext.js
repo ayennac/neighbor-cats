@@ -4,7 +4,7 @@ export const PostContext = createContext()
 
 export const postReducer = (state, action) => {
     switch(action.type){
-        case 'SET_POST':
+        case 'SET_POSTS':
             return{
                 posts:action.payload
             }
@@ -14,7 +14,7 @@ export const postReducer = (state, action) => {
             }
         case 'DELETE_POST':
             return{
-                posts: state.posts.filter(post => post._id !== action.payload._id)
+                posts:state.posts.filter(post => post._id !== action.payload._id)
             }
         default:
             return state
@@ -22,7 +22,7 @@ export const postReducer = (state, action) => {
 }
 
 export const PostContextProvider = ({children}) =>{
-    const [state, dispatch] = useReducer (postReducer, {
+    const [state, dispatch] = useReducer(postReducer, {
         posts: null
     }) 
     
