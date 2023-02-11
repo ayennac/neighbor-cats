@@ -28,7 +28,7 @@ header a {
 }
 .pages{
   max-width: 1400px;
-  padding: 20px;
+  padding: 10px 20px;
   margin: 0 auto;
 }
 
@@ -37,4 +37,50 @@ header a {
   display: grid;
   grid-template-columns: 3fr 1fr;
   gap: 100px;
+}
+
+/*post*/
+
+.post{
+  border-style: solid;
+  border-color: black;
+}
+
+form {
+  display: block;
+}
+
+form label{
+  padding: 5px 0px;
+}
+
+form input{
+  display: block;
+  padding: 5px 5px;
+  margin-top: 5x;
+  margin-bottom: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+form h3{
+  text-align: center;
+}
+
+form.signup, form.login{
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+form button {
+  background: var(--primary);
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
 }

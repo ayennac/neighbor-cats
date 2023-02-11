@@ -26,9 +26,11 @@ const Post = ({post}) => {
     
     return(
         <div className= "post">
-            <h3>{post.fname} {post.lname}</h3>
-            <p>{post.des}</p>
-            <p>{post.createdAt}</p>
+            <p clasName = "post-prof-pic">{post.userPic}</p>
+            <h3 className = "post-name">{post.fname} {post.lname}</h3>
+            <p className = "post-desc">{post.des}</p>
+            <p className = "post-link">{post.pic}</p>
+            <p className = "post-date">{post.createdAt}</p>
             <span onClick = {handleClick} >Delete</span>
         </div>
     )

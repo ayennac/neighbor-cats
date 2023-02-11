@@ -35,7 +35,7 @@ const Posts = () => {
     }, [dispatch, user])
 
     return(
-        <div className = "posts">
+        <div className = "posts container">
             <h2>Posts</h2>
             <PostForm></PostForm>
             {posts && posts.map((post) =>(
