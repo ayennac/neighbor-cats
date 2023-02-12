@@ -11,9 +11,11 @@ const loginUser = async(req,res)=>{
     const{email, password} = req.body
     try{
         const user = await User.login(email, password)
+        const user_fname = user.fname
+        const user_lname = user.lname
 
         const token = createToken(user._id)
-        res.status(200).json({email, token})
+        res.status(200).json({email, user_fname, user_lname, token})
     }catch(error){
         res.status(400).json({error:error.message})
     }
@@ -35,5 +37,9 @@ const signupUser = async(req, res) =>{
         res.status(400).json({error: error.message})
     }
 }
+
+//get user details
+
+// const getUserdetails = async(req, res)
 
 module.exports = {signupUser, loginUser}

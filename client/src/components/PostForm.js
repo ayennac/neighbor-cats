@@ -10,9 +10,9 @@ import { useAuthContext } from '../hooks/useAuthContext'
 const PostForm = () =>{
     const {dispatch} = usePostsContext()
     const {user} = useAuthContext()
+    const lname = user.user_lname
+    const fname = user.user_fname
 
-    const [fname, setFname] = useState('')
-    const [lname, setLname] = useState('')
     const [des, setDes]  = useState('')
     const [pic, setPostPic] = useState('')
     const [userpic, setUserpic] = useState('')
@@ -26,8 +26,9 @@ const PostForm = () =>{
             setError('You must be logged in')
             return
         }
+        console.log(lname, fname)
 
-        const post = {fname,lname, des, pic, userpic}
+        const post = {fname, lname, des, pic, userpic}
 
         const response = await fetch('/api/posts/', {
             method:'POST',
@@ -45,8 +46,7 @@ const PostForm = () =>{
         }
 
         if(response.ok){
-            setFname('')
-            setLname('')
+    
             setDes('')
             setPostPic('')
             setUserpic('')
@@ -59,16 +59,6 @@ const PostForm = () =>{
     return(
         <form className="create" onSubmit={handleSubmit}>
         <h3>PostForm</h3>
-            <label> First Name </label>
-            <input 
-                type="text"
-                onChange={(e) => setFname(e.target.value)}
-                value={fname}/>
-            <label> Last Name </label>
-            <input 
-                type="text"
-                onChange={(e) => setLname(e.target.value)}
-                value={lname}/>
              <label> Description </label>
              <input 
                 type="text"

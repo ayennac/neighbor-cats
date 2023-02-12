@@ -1,6 +1,7 @@
 
 //npm installed react-router-dom so that we can style individual pages
-import {Route, createBrowserRouter, createRoutesFromElements, RouterProvider} from 'react-router-dom'
+import {Route, createBrowserRouter, createRoutesFromElements, RouterProvider, Navigate} from 'react-router-dom'
+import { useAuthContext } from './hooks/useAuthContext'
 
 //pages 
 import Home from './pages/Home'
@@ -14,6 +15,7 @@ import RootLayout from './layouts/RootLayout'
 
 
 const router = createBrowserRouter(
+
   createRoutesFromElements(
     <Route path = "/" element = {<RootLayout/>}>
     <Route index element={<Home/>}/>
@@ -21,14 +23,15 @@ const router = createBrowserRouter(
     <Route path = "login" element = {<Login/>}/>
     <Route path = "signup" element = {<Signup/>}/>
     <Route path = "posts" element = {<Posts/>}/>
+    <Route path = "*" element ={<p>Oops! There's nothing here!</p>}/>
 
     </Route>
   )
 )
 
-function App() {
-  return (
-      <RouterProvider router = {router}>
+const App = () => {
+   return (
+      <RouterProvider router = {router} >
 
       </RouterProvider>
   );

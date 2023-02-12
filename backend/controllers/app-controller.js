@@ -3,9 +3,9 @@ const mongoose = require('mongoose')
 const Post = require('../models/post-model')
 
 const getallPosts = async(req, res) =>{
-    // const user_id = req.user._id
+    const user_id = req.user._id
 
-    const posts = await Post.find({}).sort({createdAt: -1})
+    const posts = await Post.find({user_id}).sort({createdAt: -1})
     res.status(200).json(posts)
 }
 

@@ -26,7 +26,7 @@ const Post = ({post}) => {
     
     return(
         <div className= "post">
-            <p clasName = "post-prof-pic">{post.userPic}</p>
+            <p className = "post-prof-pic">{post.userPic}</p>
             <h3 className = "post-name">{post.fname} {post.lname}</h3>
             <p className = "post-desc">{post.des}</p>
             <p className = "post-link">{post.pic}</p>

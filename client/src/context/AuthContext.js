@@ -13,6 +13,7 @@ export const authReducer = (state, action) =>{
             return{
                 user:null
             }
+        
         default:
             return state
     }
@@ -20,8 +21,10 @@ export const authReducer = (state, action) =>{
 
 
 export const AuthContextProvider = ({children}) => {
+    //gett the user that's already in local storage first rather than null 
+    // to avoid having null right away
     const [state, dispatch] = useReducer(authReducer, {
-        user: null
+        user: JSON.parse(localStorage.getItem('user'))
     })
 
     useEffect(() =>{
