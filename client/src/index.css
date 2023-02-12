@@ -88,3 +88,29 @@ form button {
   border-radius: 4px;
   cursor: pointer;
 }
+
+.posts-container{
+  width: 50%;
+}
+
+.post-header{
+
+  vertical-align: middle;
+}
+
+.post-prof-pic{
+  border-radius: 50%;
+
+  max-width: 2em;
+  max-height: 2em;
+  
+  display: inline;
+
+ 
+
+}
+
+
+.post-header h3{
+  display: inline;
+}

@@ -1,6 +1,8 @@
 
 import { usePostsContext } from "../hooks/usePostContext"
 import { useAuthContext } from "../hooks/useAuthContext"
+import logo192 from './logo192.png'
+import ayenna_pic from './Ayenna_Cagaanan_biopic.JPG'
 
 
 const Post = ({post}) => {
@@ -26,10 +28,12 @@ const Post = ({post}) => {
     
     return(
         <div className= "post">
-            <p className = "post-prof-pic">{post.userPic}</p>
-            <h3 className = "post-name">{post.fname} {post.lname}</h3>
-            <p className = "post-desc">{post.des}</p>
-            <p className = "post-link">{post.pic}</p>
+            <div className = "post-header">
+                <img className = "post-prof-pic" src = {ayenna_pic}/>
+                <h3>{post.fname} {post.lname}</h3>
+            </div>
+            <p className = "post-description">{post.des}</p>
+            <img className = "post-link" src= {logo192}/>
             <p className = "post-date">{post.createdAt}</p>
             <span onClick = {handleClick} >Delete</span>
         </div>
